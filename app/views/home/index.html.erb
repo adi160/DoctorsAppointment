@@ -1,2 +1,9 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1> Dcotor Appointment </h1>
+
+<h3> Login as: </h3>
+<%= link_to 'Patient', doctors_path %> |
+<%= link_to 'Doctor', "#"%>
+
+<p>
+  <%= link_to 'SignOut', destroy_user_session_path, method: :delete %>
+</p>

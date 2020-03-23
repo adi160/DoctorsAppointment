@@ -10,11 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_143145) do
+ActiveRecord::Schema.define(version: 2020_03_23_105046) do
 
   create_table "bookings", force: :cascade do |t|
-    t.boolean "is_available"
-    t.boolean "is_completed"
     t.integer "schedule_id"
     t.integer "doctor_id"
     t.integer "patient_id"
@@ -73,6 +71,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_143145) do
     t.integer "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_available"
+    t.boolean "is_completed"
   end
 
   create_table "users", force: :cascade do |t|
