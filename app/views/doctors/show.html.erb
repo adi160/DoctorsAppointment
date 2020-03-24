@@ -1,0 +1,12 @@
+<h1> Profile </h1>
+
+<% fname = @doctor.first_name.capitalize! %>
+<% mname = @doctor.middle_name %>
+<% lname = @doctor.last_name %>
+<p> Name : <%= fname + " " + mname + " " + lname %> </p>
+<p> Address : <%= @doctor.address %> </p>
+<p> city : <%= @doctor.city %> </p>
+<p> State : <%= @doctor.state %> </p>
+<p> Country : <%= @doctor.country %></p>
+
+<h3> Schedule : </h3>
