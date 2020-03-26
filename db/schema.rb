@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_052511) do
+ActiveRecord::Schema.define(version: 2020_03_26_114237) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "schedule_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_052511) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
-    t.integer "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_052511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "phone_no"
+    t.string "city"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_052511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "dob"
+    t.integer "category_id"
   end
 
   create_table "patients", force: :cascade do |t|

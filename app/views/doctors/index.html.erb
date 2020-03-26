@@ -2,14 +2,16 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>city</th>
+    <th> Name </th>
+    <th> Specialization </th>
+    <th> city </th>
     <th></th>
   </tr>
  
   <% @doctors.each do |doctor| %>
     <tr>
       <td><%= doctor.first_name.capitalize! %></td>
+      <td><%= Category.find(doctor.category_id).category_name %></td>
       <td><%= doctor.city %></td>
       <td></td> 
       <td><%= link_to 'book', doctor_path(doctor) %></td>

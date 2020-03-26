@@ -2,8 +2,13 @@
 
 <h3> Login as: </h3>
 <%= link_to 'Patient', doctors_path %> |
-<%= link_to 'Doctor', "#"%>
 
+<% doctor = Doctor.find_by_user_id(current_user) %>
+<% if doctor %>
+  <%= link_to 'Doctor', doctor_path(doctor) %>
+<% else %>
+  <%= link_to 'Doctor', new_doctor_path %>
+<% end %>
 <p>
   <%= link_to 'SignOut', destroy_user_session_path, method: :delete %>
 </p>
