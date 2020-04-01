@@ -13,5 +13,6 @@
 <p> Country : <%= @doctor.country %></p>
 
 <h3> Clinic Info: </h3>
+<%= render 'clinics/index' %>
 
 <%= link_to 'Next', new_doctor_clinic_path(@doctor) %>

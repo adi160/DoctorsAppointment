@@ -1,6 +1,7 @@
 class ClinicsController < ApplicationController
 
   def index
+    @clinics = Clinic.all
   end
 
   def show
@@ -13,7 +14,7 @@ class ClinicsController < ApplicationController
   def create
     @doctor = Doctor.find(params[:doctor_id])
     @clinic = Clinic.new(clinic_params)
-    @clinic.doctor_id = @doctor
+    @clinic.doctor_id = @doctor.id
     @clinic.save
     redirect_to doctors_path
   end

@@ -1,0 +1,9 @@
+<h2> Clinic Info: </h2>
+
+<% @clinics.each do |clinic| %>
+  <p> Address: <%= clinic.clinic_address %></p>
+  <p> City: <%= clinic.city %></p>
+  <b> Time table </b>
+  <p> From: <%= clinic.start.strftime("%I:%M%p") %>
+      To: <%= clinic.end.strftime("%I:%M%p") %></p><hr>
+<% end %>
