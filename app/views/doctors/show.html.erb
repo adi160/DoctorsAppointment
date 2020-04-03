@@ -1,4 +1,4 @@
-<h1> Profile </h1>
+<h1> Profile : </h1>
 
 <%= link_to 'Register', new_doctor_path %>
 
@@ -12,7 +12,6 @@
 <p> State : <%= @doctor.state %> </p>
 <p> Country : <%= @doctor.country %></p>
 
-<h3> Clinic Info: </h3>
 <%= render 'clinics/index' %>
 
 <%= link_to 'Next', new_doctor_clinic_path(@doctor) %>
