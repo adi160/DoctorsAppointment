@@ -1,20 +1,42 @@
-<h1> Doctors List </h1>
-
-<table>
-  <tr>
-    <th> Name </th>
-    <th> Specialization </th>
-    <th> city </th>
-    <th></th>
-  </tr>
- 
-  <% @doctors.each do |doctor| %>
-    <tr>
-      <td><%= doctor.first_name.capitalize! %></td>
-      <td><%= Category.find(doctor.category_id).category_name %></td>
-      <td><%= doctor.city %></td>
-      <td></td> 
-      <td><%= link_to 'book', doctor_path(doctor) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container doctor">
+  <div class="jumbotron">
+    <h1> Doctors List </h1>
+      <div class="row">
+        <div class="col-md-12">
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th> Name </th>
+              <th> Specialization </th>
+              <th> city </th>
+              <th> Appointment </th>
+            </thead>
+            <tbody>
+              <% @doctors.each do |doctor| %>
+                <tr>
+                  <td><%= doctor.first_name.capitalize! %></td>
+                  <td><%= Category.find(doctor.category_id).category_name %></td>
+                  <td><%= doctor.city %></td>
+                  <td><%= link_to 'book', doctor_path(doctor), :class => "btn btn-success" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+            <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1"><i class="fa fa-arrow-left"></i></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+              <a class="page-link" href="#"><i class="fa fa-arrow-right"></i></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>

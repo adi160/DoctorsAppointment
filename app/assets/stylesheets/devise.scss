@@ -1,8 +1,9 @@
 .container{
   margin:0 auto;
   width:1000px;
+  margin-top: 75px;
 }
-h1,label,hr{
+h1,label,hr,em{
   color:blue;
 }
 .bottom{
@@ -11,4 +12,22 @@ h1,label,hr{
 #calendar {
   max-width: 900px;
   margin: 40px auto;
+}
+.fc-time-grid-container { 
+  height: wrap !important;
+}
+.card{
+  margin:0 auto;
+  max-width: 500px;
+  margin-top: 75px;
+  background-color:#e9ecef;
+}
+.well-collapse{
+  background-color: lightcoral;
+}
+.alert{
+  margin:0 auto;
+  max-width: 500px;
+  margin-top:25px;
+  margin-bottom: 10px;
 }

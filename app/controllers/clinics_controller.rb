@@ -18,6 +18,10 @@ class ClinicsController < ApplicationController
     redirect_to doctors_path
   end
 
+  def get_clinic_variable
+    render json: {  clinics: Clinic.all }
+  end
+
   private
 
   def clinic_params
