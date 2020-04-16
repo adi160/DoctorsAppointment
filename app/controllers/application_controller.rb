@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if doctor
       doctor_path(doctor)
     else
-      doctors_path
+      patients_path
     end
   end
 
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_user
-    @present_user = Doctor.find_by_user_id(current_user)
+    @present_user = Doctor.find_by_user_id(current_user) || Patient.find_by_user_id(current_user)
   end
 
 end

@@ -1,16 +1,87 @@
-<h1> Welcome! </h1>
-
-<div id="calendarModal" class="modal fade">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-            <h4 id="modalTitle" class="modal-title"></h4>
-        </div>
-        <div id="modalBody" class="modal-body"> </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-    </div>
+<%# <div class="container">
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
+    See Modal with Form
+  </button>  
 </div>
+
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Fill the form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> %>
+<div class="container patients">
+  <div class="jumbotron">
+    <h4 class="form-title"><b>Fill the form</b></h4>
+      <%= form_with model: @patient do |f| %>
+        <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :first_name %><br>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :last_name %><br>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :age %><br>
+              <%= f.number_field :age, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :sex %><br>
+              <%= f.text_field :sex, class: "form-control" %>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :address %><br>
+              <%= f.text_field :address, class: "form-control" %>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :city %><br>
+              <%= f.text_field :city, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :state %><br>
+              <%= f.text_field :state, class: "form-control" %>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :phone_no %><br>
+              <%= f.text_field :phone_no, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :pincode %><br>
+              <%= f.text_field :pincode, class: "form-control" %>
+            </div>
+          </div>
+          </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <%= f.submit "Submit", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    
+  </div>
 </div>

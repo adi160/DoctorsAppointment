@@ -1,19 +1,47 @@
-<h1> Profile : </h1>
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+             <h1 class="">DOCTOR</h1>
+         
+          <button type="button" class="btn btn-warning">Return to Profile</button>  
+          <button type="button" class="btn btn-success showCalender">Access Calendar</button>
+        <br>
+        </div>
+        <div class="col-sm-2">
+          <a href="/users" class="pull-sright"><img title="profile image" class="rounded-circle z-depth-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG685vI07-3MsuqJxjCfzIabfFJJG-8yM-ppvjjNpD5QNtWNE4A"></a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <% fname = @doctor.first_name.capitalize! %>
+                <% lname = @doctor.last_name %>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name: </strong></span> <%= fname + " " + lname %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Specialization : </strong></span><%= Category.find(@doctor.category_id).category_name %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span> <%= @doctor.address %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= current_user.email %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Birthday: </strong></span>3 May 1981</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age: </strong></span>37</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex: </strong></span>M</li>
+                <li class="list-group-item text-muted" contenteditable="false">Contact Details</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Phone Number: </strong></span><%= Clinic.find_by_doctor_id(@doctor).phone_no %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Cellphone Number: </strong></span>09159092245</li>
+                
+            </ul>
+            <%# <ul class="list-group">
+                <li class="list-group-item text-muted">PATIENT LIBRARY<i class="fa fa-dashboard fa-1x"></i>
 
-<%= link_to 'Register', new_doctor_path %>
-
-<% fname = @doctor.first_name.capitalize! %>
-<% mname = @doctor.middle_name %>
-<% lname = @doctor.last_name %>
-<p> Name : <%= fname + " " + mname + " " + lname %> </p>
-<p> Specialization : <%= Category.find(@doctor.category_id).category_name %></p>
-<p> Address : <%= @doctor.address %> </p>
-<p> city : <%= @doctor.city %> </p>
-<p> State : <%= @doctor.state %> </p>
-<p> Country : <%= @doctor.country %></p>
-
-<%= render 'clinics/index' %>
-
-<div id='calendar'></div>
-
-<%= link_to 'Next', new_doctor_clinic_path(@doctor) %>
+                </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Justine Tan</a></strong></span></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Chris Poernomo</a></strong></span></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Warren Monsod</a></strong></span> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Zysa del Mundo</a></strong></span></li>
+            </ul> %>
+    </div>
+    <div class="col-sm-8 cal-div">
+      <div id='calendar'></div>
+    </div>
+  </div>
+</div>
