@@ -21,7 +21,7 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name: </strong></span> <%= fname + " " + lname %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Specialization : </strong></span><%= Category.find(@doctor.category_id).category_name %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span> <%= @doctor.address %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= current_user.email %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= User.find(@doctor.user_id).email %> </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Birthday: </strong></span>3 May 1981</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age: </strong></span>37</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex: </strong></span>M</li>

@@ -13,6 +13,9 @@
 // });
 
 $(document).on("turbolinks:load", function(){
+  var todayDate = new Date();
+  todayDate.setHours(0,0,0,0);
+  var eventData;
 
   var calendarEl = document.getElementById('calendar');
 
@@ -20,11 +23,10 @@ $(document).on("turbolinks:load", function(){
     plugins: ['interaction', 'timeGrid', 'dayGrid', 'list' ],
     defaultView: 'timeGrid',
     visibleRange: function(currentDate) {
-      // Generate a new date for manipulating in the next step
+
       var startDate = new Date(currentDate.valueOf());
       var endDate = new Date(currentDate.valueOf());
 
-      // Adjust the start & end dates, respectively
       startDate.setDate(startDate.getDate()); 
       endDate.setDate(endDate.getDate() + 4); 
 
@@ -45,44 +47,39 @@ $(document).on("turbolinks:load", function(){
     //   alert('clicked ' + info.dateStr);
     // },
     select: function(info) {
+      var title = "Booked"
+      var eventData = {
+        title: title,
+        start: info.start,
+        end: info.end
+      }
+      if (eventData.start < todayDate){
+        alert("You can't choose a date that already past.");
+        calendar.unselect();
+        return
+      }
       $('#newEvent').modal('show');
       $('#submit').unbind();
       $('#submit').on('click', function() {
-        var title = "Booked"
-        if (title) {
-            calendar.addEvent({
-            title: title,
-            start: info.start,
-          });
-          $('#newEvent').modal('hide');
-          }
-        else {
-          $('#newEvent').modal('hide');
-        }
+      calendar.addEvent(eventData);
+      $('#newEvent').modal('hide');
       });
-    },
+  }, 
+  // events: {
+  //   url: "../schedules",
+  //   method: "POST",
+  //   data: eventData,
+  //   dataType: 'json',
+  //   success: function(json) {
+  //   alert(json.msg);
+  //   //calendar.addEvent(eventData);
+  //   calendar.refetchEvents();
+  //     }
+  // },
   });
   calendar.render();
 });
 
-// var newEvent = function(start) {
-//   $('#newEvent').modal('show');
-//   $('#submit').unbind();
-//   $('#submit').on('click', function() {
-//   var title = "Booked"
-//   if (title) {
-//     calendar.addEvent({
-//       title: 'Booked',
-//       start: date,
-//       allDay: true
-//     });
-//     $('#newEvent').modal('hide');
-//     }
-//   else {
-//     $('#newEvent').modal('hide');
-//   }
-//   });
-// }
 
 function changeFormatOfTime(time){
   var dt = new Date(time);
