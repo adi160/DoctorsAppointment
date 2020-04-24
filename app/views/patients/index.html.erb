@@ -1,11 +1,41 @@
-<div class="container patients">
-  <div class="jumbotron jumbo-p">
-    <h4> Looks like you haven't any appointment! </h4><hr>
-    <%= image_tag "schedule.svg", class: "schedule_img "%>
-    <% if !Patient.find_by_user_id(current_user) %>
-      <%= link_to 'Book an appointment', new_patient_path, class: "btn btn-info" %>
-    <% else %>
-      <%= link_to 'Book an appointment', doctors_path, class: "btn btn-info" %>
-    <% end %>
+<% if !Schedule.exists?(patient_id: Patient.find_by_user_id(current_user)) %>
+  <div class="container patients">
+    <div class="jumbotron jumbo-p">
+      <h4> Looks like you haven't any appointment! </h4><hr>
+      <%= image_tag "schedule.svg", class: "schedule_img "%>
+      <% if !Patient.find_by_user_id(current_user) %>
+        <%= link_to 'Book an appointment', new_patient_path, class: "btn btn-info" %>
+      <% else %>
+        <%= link_to 'Book an appointment', doctors_path, class: "btn btn-info" %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <% @schedules.each do |schedule| %>
+      <div class="row row-striped">
+        <div class="col-2 text-right">
+          <h1 class="display-4"><span class="badge badge-secondary"><%= schedule.start.strftime("%d") %></span></h1>
+          <h2 class="month_schedule"><%= schedule.start.strftime("%b") %></h2>
+        </div>
+        <div class="col-7">
+          <h3 class="text-uppercase"><strong>Appointment</strong></h3>
+          <ul class="list-inline">
+              <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> <%= schedule.start.strftime("%A") %></li>
+            <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= schedule.start.strftime("%I:%M%p") %> - <%= schedule.end.strftime("%I:%M%p") %></li>
+            <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Cafe</li>
+          </ul>
+          <p>Please available an hour before your schedule time</p>
+        </div>
+        <div class="col-3">
+          <ul class="list-unstyled">
+            <li class="list-item"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i> Status </li>
+            <li class="list-item"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> Edit </li>
+            <li class="list-item"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> Cancle </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to 'Book an appointment', doctors_path, class: "btn btn-info btn-schedule" %>
+	</div>
+<% end %>

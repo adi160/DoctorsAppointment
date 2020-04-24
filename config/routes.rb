@@ -12,6 +12,5 @@ Rails.application.routes.draw do
   end
   
   resources :schedules
-  
   resources :patients
 end

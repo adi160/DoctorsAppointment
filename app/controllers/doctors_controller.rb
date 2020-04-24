@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :current_user
+  #before_action :get_id 
 
   def index
     @doctors = Doctor.all
@@ -22,6 +23,11 @@ class DoctorsController < ApplicationController
   end
 
   private
+  
+  def get_id
+    @doctor = Doctor.find(params[:id])
+  end
+
   def doctor_params
     params.require(:doctor).permit(:first_name, :middle_name, :last_name, :dob, :address, :city, :state, :country, :pincode, :category_id)
   end

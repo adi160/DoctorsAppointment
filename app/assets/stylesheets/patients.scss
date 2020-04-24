@@ -17,3 +17,33 @@ h4{
 .form-title{
   text-align: center;
 }
+
+.row-striped:nth-of-type(odd){
+  background-color: #efefef;
+  border-left: 4px #000000 solid;
+}
+
+.row-striped:nth-of-type(even){
+  background-color: #ffffff;
+  border-left: 4px #efefef solid;
+}
+
+.row-striped {
+    padding: 15px 0;
+}
+
+.month_schedule{
+  margin-right: 15px;
+}
+
+.list-item{
+  height: 45px;
+}
+
+.btn-schedule{
+  margin: 20px 0px 20px 0px;
+}
+
+.fa{
+  color: grey;
+}

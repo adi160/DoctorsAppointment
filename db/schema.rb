@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_043315) do
+ActiveRecord::Schema.define(version: 2020_04_23_053440) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "schedule_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_043315) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_available"
     t.boolean "is_completed"
+    t.integer "patient_id"
   end
 
   create_table "users", force: :cascade do |t|

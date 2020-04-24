@@ -2,6 +2,7 @@ class PatientsController < ApplicationController
   before_action :current_user
   
   def index
+    @schedules = Schedule.all
   end
 
   def new

@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   before_action :current_user
 
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.where(start: params[:start]..params[:end])
   end
 
   def new
@@ -16,6 +16,7 @@ class SchedulesController < ApplicationController
     @schedule.save
   end
 
+  private
   def schedule_params
     params.permit(:start, :end)
   end
