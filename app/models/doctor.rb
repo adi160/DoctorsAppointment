@@ -6,4 +6,13 @@ class Doctor < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
+  def self.search(search)
+    if search
+      where(["first_name LIKE ?","%#{search}%"])
+    else
+      all
+    end
+
+  end
+
 end

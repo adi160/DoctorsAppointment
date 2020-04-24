@@ -3,7 +3,7 @@ class DoctorsController < ApplicationController
   #before_action :get_id 
 
   def index
-    @doctors = Doctor.all
+    @doctors = Doctor.search(params[:search])
   end
 
   def show

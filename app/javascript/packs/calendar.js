@@ -4,6 +4,7 @@
 
   var todayDate = new Date();
   todayDate.setHours(0,0,0,0);
+
   var initialize_calendar;
   initialize_calendar = function() {
     $('#calendar').each(function(){
@@ -16,12 +17,27 @@
         },
         defaultView: 'agendaWeek',
         selectable: true,
-        defaultTimedEventDuration: '00:30:00',
-        slotDuration: '00:30:00',
+        defaultTimedEventDuration: '00:15:00',
+        slotDuration: '00:15:00',
         slotLabelInterval: 15,
-        events: '/schedules.json',
         eventColor: '#f90606',
-  
+        // events:function() {
+        //   $.ajax({
+        //       type: "GET",
+        //       url: "/clinics/get_clinic_variable",
+        //       dataType: "json",
+        //       success: function (response) {
+        //         var $clinics = response['clinics'];
+        //         //console.log($clinics[1].id);
+        //         start_time = changeFormatOfTime($clinics[0].start);
+        //         end_time = changeFormatOfTime($clinics[0].end);
+        //         //console.log(end_time);
+        //         $('#calendar').fullCalendar('option', 'minTime', start_time);
+        //         $('#calendar').fullCalendar('option', 'maxTime', end_time);
+        //       } 
+        //     });
+        // },
+        events: '/schedules.json',
         select: function(start, end) {
           $(".fc-highlight").css("background", "green");
           var title = "Booked"
@@ -50,7 +66,29 @@
           $('#newEvent').modal('hide');
           });
         },
+        eventClick: function(schedule, jsEvent, view) {
+          id = schedule.id
+          $('#newEvent').modal('show');
+          $('#submit').unbind();
+          $('#submit').on('click', function() {
+            $.ajax({
+              url: "../schedules/"+id,
+              type: "DELETE",
+              success: function() {
+                $("#calendar").fullCalendar("removeEvents",schedule.id);
+                $("#calendar").fullCalendar("refetchEvents");
+              }
+            });
+          $('#newEvent').modal('hide');
+          });
+        }
       });
     })
   };
   $(document).on('turbolinks:load', initialize_calendar);
+
+  function changeFormatOfTime(time){
+    var dt = new Date(time);
+    var time = (dt.getUTCHours() < 10 ? '0' : '') + dt.getUTCHours() + ":" + (dt.getUTCMinutes() < 10 ? '0' : '') + dt.getUTCMinutes() + ":" + (dt.getUTCSeconds() < 10 ? '0' : '') + dt.getUTCSeconds();
+    return time;
+  }
