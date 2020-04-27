@@ -20,24 +20,21 @@
         defaultTimedEventDuration: '00:15:00',
         slotDuration: '00:15:00',
         slotLabelInterval: 15,
-        eventColor: '#f90606',
-        // events:function() {
-        //   $.ajax({
-        //       type: "GET",
-        //       url: "/clinics/get_clinic_variable",
-        //       dataType: "json",
-        //       success: function (response) {
-        //         var $clinics = response['clinics'];
-        //         //console.log($clinics[1].id);
-        //         start_time = changeFormatOfTime($clinics[0].start);
-        //         end_time = changeFormatOfTime($clinics[0].end);
-        //         //console.log(end_time);
-        //         $('#calendar').fullCalendar('option', 'minTime', start_time);
-        //         $('#calendar').fullCalendar('option', 'maxTime', end_time);
-        //       } 
-        //     });
-        // },
         events: '/schedules.json',
+        displayEventTime: false,
+        eventAfterRender: function (event, element, view) {
+          var todayDate = new Date();
+          //todayDate.setHours(0,0,0,0);
+          var date = todayDate.getDate();
+          var eventDate = event.start.date();
+          if (eventDate < date ) {
+              element.css('background-color', 'grey');
+          } else if (eventDate == date) {
+              element.css('background-color', 'red');
+          } else if (eventDate > date) {
+              element.css('background-color', 'green');
+          }
+      },
         select: function(start, end) {
           $(".fc-highlight").css("background", "green");
           var title = "Booked"

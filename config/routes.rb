@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
+  resources :users
   get 'home/index'
   get 'clinics/get_clinic_variable'
 

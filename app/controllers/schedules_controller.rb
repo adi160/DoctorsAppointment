@@ -13,6 +13,7 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.patient_id = (Patient.find_by_user_id(current_user)).id
     @schedule.doctor_id = 2
     @schedule.save
   end
