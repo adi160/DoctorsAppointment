@@ -13,6 +13,7 @@ class DoctorsController < ApplicationController
   
   def new
     @doctor = Doctor.new
+    @clinic = Clinic.new
   end
 
   def create
@@ -29,6 +30,6 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:first_name, :middle_name, :last_name, :dob, :address, :city, :state, :country, :pincode, :category_id)
+    params.require(:doctor).permit(:first_name, :last_name, :dob, :address, :city, :state, :country, :pincode, :category_id)
   end
 end

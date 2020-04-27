@@ -20,7 +20,7 @@
         defaultTimedEventDuration: '00:15:00',
         slotDuration: '00:15:00',
         slotLabelInterval: 15,
-        events: '/schedules.json',
+        events: window.location.pathname + "/schedules",
         displayEventTime: false,
         eventAfterRender: function (event, element, view) {
           var todayDate = new Date();
@@ -52,7 +52,7 @@
           $('#submit').unbind();
           $('#submit').on('click', function() {
             $.ajax({
-              url: "../schedules",
+              url: window.location.pathname + "/schedules",
               type: "POST",
               data: eventData,
               success: function() {
@@ -69,7 +69,7 @@
           $('#submit').unbind();
           $('#submit').on('click', function() {
             $.ajax({
-              url: "../schedules/"+id,
+              url: window.location.pathname + "/schedules/"+id,
               type: "DELETE",
               success: function() {
                 $("#calendar").fullCalendar("removeEvents",schedule.id);

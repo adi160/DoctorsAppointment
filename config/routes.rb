@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :doctors do
     resources :clinics
+    resources :schedules
   end
-  
-  resources :schedules
+
   resources :patients
 end
