@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  
   get 'home/index'
   get 'clinics/get_clinic_variable'
 

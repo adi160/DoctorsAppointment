@@ -1,0 +1,21 @@
+<div class="container patients shadow-lg p-3 mb-5 bg-white rounded">
+  <h1 class="form-title"> Patient details </h1><hr>
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+    <% fname = @patient.first_name.capitalize! %>
+    <% lname = @patient.last_name %>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name: </strong></span> <%= fname + " " + lname %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age: </strong></span><%= @patient.age %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex: </strong></span><%= @patient.sex %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span><%= @patient.address %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">City: </strong></span><%= @patient.city %> </li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">State: </strong></span><%= @patient.state %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">State: </strong></span><%= @patient.pincode %></li>  
+    <li class="list-group-item text-muted" contenteditable="false">Contact Details</li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Phone Number: </strong></span><%= @patient.phone_no %></li>                
+  </ul>
+  <div class="modal-footer border-top-0 d-flex justify-content-left">
+    <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-info" %>
+    <%= link_to 'Delete', patient_path(@patient), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+</div>

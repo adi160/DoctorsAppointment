@@ -10,10 +10,8 @@ class ApplicationController < ActionController::Base
     patient = Patient.find_by_user_id(current_user)
     if doctor
       doctor_path(doctor)
-    elsif patient
-      patients_path
     else
-      users_path
+      patients_path
     end
   end
 
