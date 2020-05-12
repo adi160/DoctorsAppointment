@@ -6,12 +6,15 @@ class ApplicationController < ActionController::Base
   helper_method :find_user
 
   def after_sign_in_path_for(resource_or_scope)
+    role = current_user.role
     doctor =  Doctor.find_by_user_id(current_user)
     patient = Patient.find_by_user_id(current_user)
-    if doctor
+    if role==="doctor"
       doctor_path(doctor)
-    else
+    elsif role==="patient"
       patients_path
+    else
+      users_path
     end
   end
 
@@ -20,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_user
-    @present_user = Doctor.find_by_user_id(current_user) || Patient.find_by_user_id(current_user)
+    present_user = Doctor.find_by_user_id(current_user) || Patient.find_by_user_id(current_user)
   end
 
   private

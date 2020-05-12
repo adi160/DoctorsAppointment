@@ -1,49 +1,77 @@
-<div class="container target">
-    <div class="row">
-        <div class="col-sm-10">
-             <h1 class="">DOCTOR</h1>
-         
-          <button type="button" class="btn btn-warning">Return to Profile</button>  
-          <button type="button" class="btn btn-success showCalender">Access Calendar</button>
-        <br>
-        </div>
-        <div class="col-sm-2">
-          <a href="/users" class="pull-sright"><img title="profile image" class="rounded-circle z-depth-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG685vI07-3MsuqJxjCfzIabfFJJG-8yM-ppvjjNpD5QNtWNE4A"></a>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-4">
-            <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-                <% fname = @doctor.first_name.capitalize! %>
-                <% lname = @doctor.last_name %>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name: </strong></span> <%= fname + " " + lname %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Specialization : </strong></span><%= Category.find(@doctor.category_id).category_name %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span> <%= @doctor.address %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= User.find(@doctor.user_id).email %> </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Birthday: </strong></span>3 May 1981</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age: </strong></span>37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex: </strong></span>M</li>
-                <li class="list-group-item text-muted" contenteditable="false">Contact Details</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Phone Number: </strong></span><%= Clinic.find_by_doctor_id(@doctor).phone_no %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Cellphone Number: </strong></span>09159092245</li>
-                
+<div class="container content shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="row profile">
+      <div class="col-md-3 border-right">
+        <div class="profile-sidebar">
+          <!-- SIDEBAR USERPIC -->
+          <div class="profile-userpic">
+            <img src="https://media.rockstargames.com/chinatownwars/global/downloads/avatars/zhou_256x256.jpg" class="img-responsive" alt="">
+          </div>
+          <!-- END SIDEBAR USERPIC -->
+          <!-- SIDEBAR USER TITLE -->
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+              <% fname = @doctor.first_name.capitalize! %>
+              <% lname = @doctor.last_name %>
+              <%= fname + " " + lname %>
+            </div>
+            <div class="profile-usertitle-job">
+              <%= Category.find(@doctor.category_id).category_name %>
+            </div>
+            <div class="appointment">
+              Appointment
+            </div>
+          </div>
+          <!-- END SIDEBAR USER TITLE -->
+          <!-- SIDEBAR BUTTONS -->
+          <div class="profile-userbuttons">
+            <button type="button" class="btn btn-success btn-sm">Current</button>
+            <button type="button" class="btn btn-danger btn-sm">Future</button>
+          </div>
+          <!-- END SIDEBAR BUTTONS -->
+          <!-- SIDEBAR MENU -->
+          <div class="profile-usermenu sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span> <%= @doctor.address %></li>
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span><%= @doctor.city %>, <%= @doctor.state %> </li>
+                <% if clinic_id %>
+                <li class="list-group-item text-left text-muted" contenteditable="false">Clinic Details:</li>
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span><%= clinic_id.clinic_address %>, <%= clinic_id.city %>, <%= clinic_id.state %> </li>
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span><%= clinic_id.phone_no %></li>
+                <% end %>
+                <li class="list-group-item text-left text-muted" contenteditable="false">Contact Details:</li>
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span><%= User.find(@doctor.user_id).email %> </li>
+                <li class="list-group-item text-center"><span class="pull-left"><strong class=""></strong></span>09159092245</li>
             </ul>
-            <%# <ul class="list-group">
-                <li class="list-group-item text-muted">PATIENT LIBRARY<i class="fa fa-dashboard fa-1x"></i>
-
-                </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Justine Tan</a></strong></span></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Chris Poernomo</a></strong></span></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Warren Monsod</a></strong></span> </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class=""><a href="#">Zysa del Mundo</a></strong></span></li>
-            </ul> %>
-    </div>
-    <div class="col-sm-8 cal-div">
-      <div id='calendar'></div>
+          </div>
+          <!-- END MENU -->
+        </div>
+      </div>
+      <div class="col-md-9 ">
+        <nav>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
+          </div>
+        </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div id='calendar'></div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            </div>
+            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+              Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<%= render 'schedules/new' %>
+  <%= render 'schedules/new' %>

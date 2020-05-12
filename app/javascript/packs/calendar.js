@@ -37,7 +37,7 @@
       },
         select: function(start, end) {
           $(".fc-highlight").css("background", "green");
-          var title = "Booked"
+          var title = "Booked";
           var eventData = {
             title: title,
             start: moment(start).format('Y-MM-DD HH:mm:ss'), 

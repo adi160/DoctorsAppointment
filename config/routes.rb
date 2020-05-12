@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :schedules
   end
 
+  get '/profile/:id', to: 'doctors#profile', as: 'profile'
+
   resources :patients
 end

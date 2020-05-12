@@ -1,0 +1,21 @@
+<div class="container patients shadow-lg p-3 mb-5 bg-white rounded">
+  <h1 class="form-title"> Personal details </h1><hr>
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+    <% fname = @doctor.first_name.capitalize! %>
+    <% lname = @doctor.last_name %>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name: </strong></span> <%= fname + " " + lname %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Category: </strong></span><%= category_id.category_name %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">DOB: </strong></span><%= @doctor.dob %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span><%= @doctor.address %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">City: </strong></span><%= @doctor.city %> </li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">State: </strong></span><%= @doctor.state %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Country: </strong></span><%= @doctor.country %></li>  
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Pin code: </strong></span><%= @doctor.pincode %></li>                
+  </ul>
+  <div class="modal-footer border-top-0 d-flex justify-content-left">
+    <%= link_to 'Add Clinic', new_doctor_clinic_path(@doctor), class: "btn btn-success" %>
+    <%= link_to 'Edit', edit_doctor_path(@doctor), class: "btn btn-info" %>
+    <%= link_to 'Delete', doctor_path(@doctor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+</div>
