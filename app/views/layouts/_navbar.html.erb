@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Doc.App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <%= link_to "Home", "#", :class => "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <%= link_to "About", "#", :class => "nav-link" %>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -22,7 +22,9 @@
     </form>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <%# <a class="nav-link" href="#"><i class="fa fa-user"></i> <%= find_user.first_name.capitalize %>
+        <% if !find_user %>
+          <%= link_to "Doctor?", new_doctor_path, :class => "nav-link" %>
+        <% end %>
       </li>
       <li class="nav-item">
         <%= link_to '<i class="fa fa-sign-out"></i>SignOut'.html_safe, destroy_user_session_path, method: :delete, :class => "nav-link" %>

@@ -49,10 +49,14 @@
       <div class="col-md-9 ">
         <nav>
           <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+          <% if current_user.role === "patient" %>
+            <a class="nav-item nav-link active" id="nav-schedule-tab" data-toggle="tab" href="#nav-schedule" role="tab" aria-controls="nav-schedule" aria-selected="true">Schedule</a>
+          <% else %>
             <a class="nav-item nav-link active" id="nav-schedule-tab" data-toggle="tab" href="#nav-schedule" role="tab" aria-controls="nav-schedule" aria-selected="true">Schedule</a>
             <a class="nav-item nav-link" id="nav-today-list-tab" data-toggle="tab" href="#nav-today-list" role="tab" aria-controls="nav-today-list" aria-selected="false">Today's List</a>
             <a class="nav-item nav-link" id="nav-future-list-tab" data-toggle="tab" href="#nav-future-list" role="tab" aria-controls="nav-future-list" aria-selected="false">Future List</a>
             <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
+          <% end %>
           </div>
         </nav>
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">

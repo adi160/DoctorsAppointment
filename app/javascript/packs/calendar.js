@@ -20,6 +20,8 @@
         defaultTimedEventDuration: '00:15:00',
         slotDuration: '00:15:00',
         slotLabelInterval: 15,
+        minTime: "10:00:00",
+        maxTime: "18:00:00",
         events: window.location.pathname + "/schedules",
         displayEventTime: false,
         eventAfterRender: function (event, element, view) {
