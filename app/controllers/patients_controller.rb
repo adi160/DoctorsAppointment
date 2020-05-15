@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  before_action :authenticate_user!
   before_action :current_user
   before_action :set_patient, only: [:edit, :update, :show, :destroy]
   
@@ -20,6 +21,7 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     @patient.user = current_user
     @patient.save
+    flash[:notice] = 'Create succesfully!'
     redirect_to doctors_path
   end
 
@@ -28,15 +30,17 @@ class PatientsController < ApplicationController
 
   def update
     if @patient.update(patient_params)
+      flash[:notice] = 'Edit successfully!'
       redirect_to @patient
     else
+      flash[:danger] = 'Something went wrong!'
       render 'edit'
     end
   end
 
   def destroy
     @patient.destroy
-
+    flash[:danger] = 'Delete successfully!'
     redirect_to patients_path
   end
 

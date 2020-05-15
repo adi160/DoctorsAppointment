@@ -47,7 +47,7 @@
 .profile-userpic img {
   float: none;
   display:block;
-    margin:auto;
+  margin:auto;
   width: 50%;
   height: 50%;
   -webkit-border-radius: 50% !important;
@@ -97,6 +97,10 @@
 }
 
 /* Profile Content */
+#calendar {
+  max-width: 900px;
+}
+
 .profile-content {
   padding: 20px;
   background: #fff;
@@ -105,6 +109,12 @@
 
 .appointment{
   color: grey;
+}
+
+.instruction > ul{
+  list-style: none;
+  color: grey;
+  text-align: center;
 }
 
 

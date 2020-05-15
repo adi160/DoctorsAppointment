@@ -1,5 +1,8 @@
 class Doctor < ApplicationRecord
+  
   validates :user_id, uniqueness: true
+  validates_presence_of :first_name, :last_name, :address, :city, :state, :country,
+                        :pincode, :dob
   belongs_to :user
   belongs_to :category
   has_many :clinics, dependent: :destroy

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_user_id, only: [:edit, :update, :show, :destroy]
   after_action :verify_authorized
 
   def index
@@ -8,12 +9,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def update
-    @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
       redirect_to users_path, :notice => "User updated."
@@ -23,13 +22,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
+    authorize @user
+    @user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
 
   private
+
+  def get_user_id
+    @user = User.find(params[:id])
+  end
 
   def secure_params
     params.require(:user).permit(:role)

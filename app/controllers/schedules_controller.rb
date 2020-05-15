@@ -17,10 +17,12 @@ class SchedulesController < ApplicationController
     @schedule.patient_id = (Patient.find_by_user_id(current_user)).id
     @schedule.doctor_id = @doctor.id
     @schedule.save
+    flash[:danger] = 'Appointment booked successfully!'
   end
 
   def destroy
     @schedule.destroy
+    flash[:danger] = 'Cancel successfully!'
   end
 
   private

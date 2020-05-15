@@ -1,4 +1,5 @@
 class ClinicsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
   end
@@ -15,6 +16,7 @@ class ClinicsController < ApplicationController
     @clinic = Clinic.new(clinic_params)
     @clinic.doctor_id = @doctor.id
     @clinic.save
+    flash[:notice] = 'Create succesfully!'
     redirect_to doctors_path
   end
 

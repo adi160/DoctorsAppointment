@@ -3,15 +3,14 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  helper_method :find_user
 
   def after_sign_in_path_for(resource_or_scope)
     role = current_user.role
     doctor =  Doctor.find_by_user_id(current_user)
     patient = Patient.find_by_user_id(current_user)
-    if role==="doctor"
+    if role === "doctor"
       doctor_path(doctor)
-    elsif role==="patient"
+    elsif role === "patient"
       patients_path
     else
       users_path
@@ -20,10 +19,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     root_path
-  end
-
-  def find_user
-    present_user = Doctor.find_by_user_id(current_user) || Patient.find_by_user_id(current_user)
   end
 
   private

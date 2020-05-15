@@ -2,8 +2,8 @@
 //   $(".fc-time-grid-container").css("height", $(".fc-slats").height());
 // });
 
-  var todayDate = new Date();
-  todayDate.setHours(0,0,0,0);
+// var todayDate = new Date();
+// todayDate.setHours(0,0,0,0);
 
   var initialize_calendar;
   initialize_calendar = function() {
@@ -24,9 +24,8 @@
         displayEventTime: false,
         eventAfterRender: function (event, element, view) {
           var todayDate = new Date();
-          //todayDate.setHours(0,0,0,0);
-          var date = todayDate.getDate();
-          var eventDate = event.start.date();
+          var date = changeFormatOfTime(todayDate)
+          var eventDate = changeFormatOfTime(event.start)
           if (eventDate < date ) {
               element.css('background-color', 'grey');
           } else if (eventDate == date) {
@@ -84,8 +83,9 @@
   };
   $(document).on('turbolinks:load', initialize_calendar);
 
-  function changeFormatOfTime(time){
-    var dt = new Date(time);
-    var time = (dt.getUTCHours() < 10 ? '0' : '') + dt.getUTCHours() + ":" + (dt.getUTCMinutes() < 10 ? '0' : '') + dt.getUTCMinutes() + ":" + (dt.getUTCSeconds() < 10 ? '0' : '') + dt.getUTCSeconds();
-    return time;
+  function changeFormatOfTime(str){
+    var date = new Date(str),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
+  return [date.getFullYear(), mnth, day].join("-");
   }

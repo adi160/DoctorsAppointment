@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+  before_action :authenticate_user!
   before_action :current_user
   before_action :get_id, only: [:edit, :update, :show, :profile, :destroy]
 
@@ -8,6 +9,8 @@ class DoctorsController < ApplicationController
 
   def show
     @clinics = @doctor.clinics
+    @today_schedules = Schedule.where("DATE(start) = DATE(?)", Date.today)
+    @future_schedules = Schedule.where("DATE(start) > DATE(?)", Date.today)
   end
 
   def profile
@@ -21,7 +24,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
     @doctor.user = current_user
     @doctor.save
-    flash[:notice] = 'Saved succesfully!'
+    flash[:notice] = 'Create succesfully!'
     redirect_to @doctor
   end
 
