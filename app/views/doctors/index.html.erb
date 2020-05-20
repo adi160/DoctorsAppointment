@@ -21,7 +21,11 @@
               <th> Name </th>
               <th> Specialization </th>
               <th> city </th>
-              <th> Appointment </th>
+              <% if !current_user.admin? %>
+                <th> Appointment </th>
+              <% else %>
+                <th> Details </th>
+              <% end %>
             </thead>
             <tbody>
               <% @doctors.each do |doctor| %>
@@ -29,7 +33,12 @@
                   <td><%= doctor.first_name.capitalize! %></td>
                   <td><%= Category.find(doctor.category_id).category_name %></td>
                   <td><%= doctor.city %></td>
-                  <td><%= link_to 'book', doctor_path(doctor), :class => "btn btn-success" %></td>
+                  <td><% if !current_user.admin? %>
+                      <%= link_to 'book', doctor_path(doctor), :class => "btn btn-success" %>
+                      <% else %>
+                      <%= link_to 'show', profile_path(doctor), :class => "btn btn-success" %>
+                      <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

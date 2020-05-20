@@ -1,2 +1,11 @@
-<h3>User</h3>
-<p>Email: <%= @user.email if @user.email %></p>
+<div class="container patients shadow-lg p-3 mb-5 bg-white rounded">
+  <h1 class="form-title"> User details </h1><hr>
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">Email</li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span> <%= @user.email if @user.email %></li>
+  </ul>
+  <div class="modal-footer border-top-0 d-flex justify-content-left">
+    <%#= link_to 'Edit', edit_user_path(@user), class: "btn btn-info" %>
+    <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+<div>

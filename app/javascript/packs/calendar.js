@@ -2,7 +2,7 @@
 //   $(".fc-time-grid-container").css("height", $(".fc-slats").height());
 // });
 
-// var todayDate = new Date();
+var todayDate = new Date();
 // todayDate.setHours(0,0,0,0);
 
   var initialize_calendar;

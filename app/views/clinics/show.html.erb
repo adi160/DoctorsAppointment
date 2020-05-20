@@ -1,0 +1,20 @@
+<div class="container patients shadow-lg p-3 mb-5 bg-white rounded">
+  <h1 class="form-title"> Clinic details </h1><hr>
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Address: </strong></span> <%= @clinic.clinic_address %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">City: </strong></span><%= @clinic.city %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">State: </strong></span><%= @clinic.state %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Phone no.: </strong></span><%= @clinic.phone_no %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Start time: </strong></span><%= @clinic.start.strftime("%I:%M%p") %> </li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">End time: </strong></span><%= @clinic.end.strftime("%I:%M%p") %></li>               
+  </ul>
+  <div class="modal-footer border-top-0 d-flex justify-content-left">
+  <% if !current_user.admin? %>
+    <%= link_to 'Edit', edit_doctor_clinic_path(@doctor,@clinic), class: "btn btn-info" %>
+    <%= link_to 'Delete', doctor_clinic_path(@clinic), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to 'Delete', doctor_clinic_path(@clinic), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% end %>
+  </div>
+</div>

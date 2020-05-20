@@ -14,8 +14,13 @@
     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Pin code: </strong></span><%= @doctor.pincode %></li>                
   </ul>
   <div class="modal-footer border-top-0 d-flex justify-content-left">
-    <%= link_to 'Add Clinic', new_doctor_clinic_path(@doctor), class: "btn btn-success" %>
-    <%= link_to 'Edit', edit_doctor_path(@doctor), class: "btn btn-info" %>
-    <%= link_to 'Delete', doctor_path(@doctor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% if !current_user.admin? %>
+      <%= link_to 'Add Clinic', new_doctor_clinic_path(@doctor), class: "btn btn-success" %>
+      <%= link_to 'Edit', edit_doctor_path(@doctor), class: "btn btn-info" %>
+      <%= link_to 'Delete', doctor_path(@doctor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to 'Show clinic', doctor_clinic_path(@doctor), class: "btn btn-success" %>
+      <%= link_to 'Delete', doctor_path(@doctor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
   </div>
 </div>

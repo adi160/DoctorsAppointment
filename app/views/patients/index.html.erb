@@ -13,6 +13,7 @@
 <% else %>
   <div class="container">
     <% @schedules.each do |schedule| %>
+    <% if schedule.patient_id == find_user.id %>
       <div class="row row-striped">
         <div class="col-2 text-right">
           <h1 class="display-4"><span class="badge badge-secondary"><%= schedule.start.strftime("%d") %></span></h1>
@@ -35,6 +36,7 @@
           </ul>
         </div>
       </div>
+      <% end %>
     <% end %>
     <%= link_to 'Book an appointment', doctors_path, class: "btn btn-info btn-schedule" %>
 	</div>

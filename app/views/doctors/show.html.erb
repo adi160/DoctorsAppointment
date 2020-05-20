@@ -55,7 +55,7 @@
             <a class="nav-item nav-link active" id="nav-schedule-tab" data-toggle="tab" href="#nav-schedule" role="tab" aria-controls="nav-schedule" aria-selected="true">Schedule</a>
             <a class="nav-item nav-link" id="nav-today-list-tab" data-toggle="tab" href="#nav-today-list" role="tab" aria-controls="nav-today-list" aria-selected="false">Today's List</a>
             <a class="nav-item nav-link" id="nav-future-list-tab" data-toggle="tab" href="#nav-future-list" role="tab" aria-controls="nav-future-list" aria-selected="false">Future List</a>
-            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
+            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Past List</a>
           <% end %>
           </div>
         </nav>
@@ -82,7 +82,9 @@
             <% end %>
             </div>
             <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-              
+              <% @past_schedules.each do |schedule| %>
+              <%= render partial: "table", locals: {schedule: schedule} %>
+            <% end %>
             </div>
           </div>
         </div>

@@ -8,30 +8,37 @@ class DoctorsController < ApplicationController
   end
 
   def show
-    @clinics = @doctor.clinics
+    authorize @doctor
+    #@clinics = @doctor.clinics
     @today_schedules = Schedule.where("DATE(start) = DATE(?)", Date.today)
     @future_schedules = Schedule.where("DATE(start) > DATE(?)", Date.today)
+    @past_schedules = Schedule.where("DATE(start) < DATE(?)", Date.today)
   end
 
   def profile
+    authorize @doctor
   end
   
   def new
     @doctor = Doctor.new
+    authorize @doctor
   end
 
   def create
     @doctor = Doctor.new(doctor_params)
     @doctor.user = current_user
     @doctor.save
+    authorize @doctor
     flash[:notice] = 'Create succesfully!'
     redirect_to @doctor
   end
 
   def edit
+    authorize @doctor
   end
 
   def update
+    authorize @doctor
     if @doctor.update(doctor_params)
       flash[:notice] = 'Edit successfully!'
       redirect_to @doctor
@@ -42,6 +49,7 @@ class DoctorsController < ApplicationController
   end
 
   def destroy
+    authorize @doctor
     @doctor.destroy
     flash[:danger] = 'Delete successfully!'
     redirect_to root_path

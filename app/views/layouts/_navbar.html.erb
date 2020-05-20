@@ -6,15 +6,47 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <% if current_user.admin? %>
       <li class="nav-item active">
-        <%= link_to "Home", "#", :class => "nav-link" %>
+        <%= link_to "Home", users_path, :class => "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "About", "#", :class => "nav-link" %>
+        <%= link_to "patient", patient_list_path, :class => "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <%= link_to "Doctor", doctors_path, :class => "nav-link" %>
       </li>
+    <% elsif current_user.patient? %>
+      <li class="nav-item active">
+        <%= link_to "Home", patients_path, :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <% if find_user %>
+          <%= link_to "About", patient_path(find_user), :class => "nav-link" %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Setting", "#", :class => "nav-link" %>
+      </li>
+    <% else %>
+      <li class="nav-item active">
+        <%= link_to "Home", doctor_path(find_user), :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About", profile_path(find_user), :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown show">
+          <%= link_to "Setting", "#",{ 'role' => "button", 'id' => "dropdownMenuLink", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false", 'class' => "nav-link dropdown-toggle"} %>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <%= link_to "Clinic", doctor_clinics_path(find_user), :class => "dropdown-item" %>
+            <a class="dropdown-item" href="#">Other option</a>
+            <a class="dropdown-item" href="#">Other option</a>
+          </div>
+        </div>
+      </li>
+    <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search">

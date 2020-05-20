@@ -4,17 +4,21 @@ class PatientsController < ApplicationController
   before_action :set_patient, only: [:edit, :update, :show, :destroy]
   
   def index
-    #@patients = Patient.all
     @schedules = Schedule.all
     #authorize Patient
   end
 
+  def patient_list
+    @patients = Patient.all
+  end
+
   def show
+    authorize @patient
   end
 
   def new
     @patient = Patient.new
-    #authorize @patient
+    authorize @patient
   end
 
   def create
@@ -26,9 +30,11 @@ class PatientsController < ApplicationController
   end
 
   def edit
+    authorize @patient
   end
 
   def update
+    authorize @patient
     if @patient.update(patient_params)
       flash[:notice] = 'Edit successfully!'
       redirect_to @patient
@@ -39,6 +45,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
+    authorize @patient
     @patient.destroy
     flash[:danger] = 'Delete successfully!'
     redirect_to patients_path
